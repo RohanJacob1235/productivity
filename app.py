@@ -13,7 +13,11 @@ session_dict = {
     "Short Break (5 min)": 5,
     "Long Break (15 min)": 15
 }
-session_duration = session_dict[session_type]
+
+# Ensure session_type is defined before using it
+session_type = st.radio("Choose session type:", list(session_dict.keys()), index=0)
+session_duration = session_dict.get(session_type, 25)  # Default to 25 mins if not found
+
 # Start Timer Button
 if st.button("Start Timer"):
     pomodoro_timer(session_duration, session_type)
